@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://unpkg.com/fireworks-js@latest/dist/fireworks.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biglietto d'auguri</title>
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background: #000;
+    }
+
+  .center {
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      text-align: center;
+      font-size: 33px;
+      color: white;
+    }
+
+  #cake {
+      position: absolute;
+      bottom: 0%;
+      width: 100%;
+      text-align: center;
+      font-size: 33px;
+      display: none;
+    }
+
+  #lactoseFree{
+    margin-right: 30px;
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    text-align: right;
+    color: white;
+    display: none;
+  }
+
+  button {
+    background-color: white;
+    color: black;
+    border: 2px solid #FF69B4;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-top: 15px;
+    transition-duration: 0.4s;
+    font-weight: bold;
+  }
+
+  button:hover  {
+    background-color: #FF69B4;
+    color: white;
+  }
+
+  @media only screen and (max-width: 600px) {
+    #lactoseFree {
+      position: absolute;
+      bottom: 0%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      display: none;
+    }
+
+    #cake {
+      position: absolute;
+      bottom: 5%;
+      width: 100%;
+      text-align: center;
+      font-size: 33px;
+      display: none;
+    }
+  }
+
+  </style>
+</head>
+
+<body>
+  <audio id="birthdaySong" loop>
+  <source src="../media/hbd.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <div id="root">
+
+    <div class="center">
+      Buon Compleanno Marica 🎉!
+      <div>
+        <button onclick="playAudio()" type="button">🎁</button>
+      </div>
+    </div>
+
+    <div id="cake">
+      <img src="../media/birthdaycake.png" alt="Flowers in Chania" width="150" height="150">
+    </div>
+    <div id="lactoseFree">
+      <p>*La torta è senza lattosio 😝</p>
+    </div>
+
+  </div>
+
+  <script>
+
+    var x = document.getElementById("birthdaySong");
+    const root = document.getElementById('root');
+
+    const fireworks = new Fireworks(root, {
+      rocketsPoint: 50,
+      hue: { min: 0, max: 360 },
+      delay: { min: 15, max: 30 },
+      speed: 2,
+      acceleration: 1.05,
+      friction: 0.95,
+      gravity: 1.5,
+      particles: 50,
+      trace: 3,
+      explosion: 5,
+      intensity: 30,
+      autoresize: true,
+      brightness: {
+        min: 50,
+        max: 80,
+        decay: { min: 0.015, max: 0.03 }
+      },
+      mouse: {
+        click: false,
+        move: false,
+        max: 3
+      }
+    });
+
+    function playAudio() {
+      x.play();
+      $("#cake").fadeIn(6000);
+      $("#lactoseFree").delay(8000).fadeIn(1000);
+      fireworks.start();
+    }
+
+  </script>
+  </body>
+
+</html>
